@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row align-items-center vh-100">
+        <div class="col-md-6 mx-auto">
+          <div class="card shadow border">
+            <div class="card-header d-flex flex-column align-items-center text-center">
+                <h3>I'm thinking of a number between 1 and 100.</h3>
+                <h3>What is it?</h3>
+            </div>
+            <div class="card-body bg-dark text-light d-flex flex-column align-items-center">
+              <h1>{{request.session.attempts}} Guesses</h1>
+              <h2>{{request.session.response}}</h2>
+              <form action="/attempt" method="POST" class="d-flex flex-column align-items-center">
+                {% csrf_token %}
+                <input type="number" class="form-control" name= "guess" placeholder="Enter your guess"/>
+                <button type="submit" class="btn btn-success mt-2">Submit Guess</button>
+              </form>
+            </div>
+            <div class="card d-flex flex-column align-items-center">
+                <a href="/reset" class="btn btn-light text-dark">Restart Game</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
